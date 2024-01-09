@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(entities = arrayOf(Event::class), version = 1, exportSchema = false)
-public abstract class EventDatabase : RoomDatabase() {
+abstract class EventDatabase : RoomDatabase() {
     abstract fun eventDao(): EventDao
 
     companion object {
@@ -31,7 +31,7 @@ public abstract class EventDatabase : RoomDatabase() {
 
     private class EventDatabaseCallback(
         private val scope: CoroutineScope
-    ) : RoomDatabase.Callback() {
+    ) : Callback() {
 
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
@@ -43,12 +43,43 @@ public abstract class EventDatabase : RoomDatabase() {
         }
 
         suspend fun populateDatabase(eventDao: EventDao) {
-            eventDao.deleteAll()
 
-            var title = Event("Hello")
-            eventDao.insert(title)
-            title = Event("World!")
-            eventDao.insert(title)
+            var event = Event(
+                title = "Berlin",
+                notes = "Berlin",
+                location = "Germany",
+                startDateTime = "2020-03-01",
+                endDateTime = "2020-03-05",
+                duration = "4 days",
+                favorite = true,
+                mood = Utils.TravelMood.Angry,
+                type = Utils.TravelType.Family
+            )
+            eventDao.insert(event)
+            event = Event(
+                title = "Berlin",
+                notes = "Berlin",
+                location = "Germany",
+                startDateTime = "2020-03-01",
+                endDateTime = "2020-03-05",
+                duration = "4 days",
+                favorite = true,
+                mood = Utils.TravelMood.Angry,
+                type = Utils.TravelType.Family
+            )
+            eventDao.insert(event)
+            event = Event(
+                title = "Berlin",
+                notes = "Berlin",
+                location = "Germany",
+                startDateTime = "2020-03-01",
+                endDateTime = "2020-03-05",
+                duration = "4 days",
+                favorite = true,
+                mood = Utils.TravelMood.Angry,
+                type = Utils.TravelType.Family
+            )
+            eventDao.insert(event)
         }
     }
 }

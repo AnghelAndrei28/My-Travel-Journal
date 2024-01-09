@@ -15,6 +15,12 @@ class EventViewModel (private val repository: EventRepository) : ViewModel() {
             repository.insert(event)
         }
     }
+
+    fun deleteAll() {
+        viewModelScope.launch {
+            repository.deleteAll()
+        }
+    }
 }
 
 class EventViewModelFactory(private val repository: EventRepository) : ViewModelProvider.Factory {

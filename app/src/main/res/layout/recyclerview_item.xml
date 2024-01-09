@@ -1,13 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trip_list_item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/custom_card"
+    android:layout_marginTop="5dp">
+
+    <ImageView
+        android:id="@+id/event_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginBottom="@dimen/small_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.2"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/event_title"
         style="@style/event_title"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_light" />
-</LinearLayout>
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@+id/event_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/event_image"
+        app:layout_constraintTop_toTopOf="@+id/event_image"
+        tools:text="event name" />
+
+
+    <TextView
+        android:id="@+id/event_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:layout_constraintBottom_toTopOf="@+id/event_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/event_image"
+        app:layout_constraintTop_toBottomOf="@+id/event_title"
+        tools:text="event desc" />
+
+    <TextView
+        android:id="@+id/event_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/event_image"
+        app:layout_constraintTop_toBottomOf="@+id/event_location"
+        tools:text="event date" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/event_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/trip_list_item"
+        app:layout_constraintBottom_toBottomOf="@id/trip_list_item"
+        android:padding="@dimen/b_padding"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

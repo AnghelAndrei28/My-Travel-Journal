@@ -28,6 +28,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+    buildFeatures {
+        viewBinding true
+    }
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
@@ -62,4 +65,6 @@ dependencies {
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1"
 
     implementation "androidx.core:core-splashscreen:1.0.0"
+
+    implementation 'com.google.code.gson:gson:2.8.5'
 }

@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,15 +23,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = EventListAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-        eventViewModel.allEvents.observe(this, Observer { words ->
-            // Update the cached copy of the words in the adapter.
-            words?.let { adapter.submitList(it) }
+//        eventViewModel.deleteAll();
+        eventViewModel.allEvents.observe(this, Observer { events ->
+            events?.let { adapter.submitList(it) }
         })
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
@@ -44,9 +43,9 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == newEventActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            data?.getStringExtra(NewEventActivity.EXTRA_REPLY)?.let {
-                val word = Event(it)
-                eventViewModel.insert(word)
+            data?.getSerializableExtra(NewEventActivity.EXTRA_REPLY)?.let {
+                val event = Gson().fromJson(it.toString(), Event::class.java)
+                eventViewModel.insert(event)
             }
         } else {
             Toast.makeText(

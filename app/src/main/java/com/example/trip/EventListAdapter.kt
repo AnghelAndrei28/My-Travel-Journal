@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.trip.databinding.RecyclerviewItemBinding
 
 class EventListAdapter : ListAdapter<Event, EventListAdapter.EventViewHolder>(EventComparator()) {
 
@@ -16,14 +17,17 @@ class EventListAdapter : ListAdapter<Event, EventListAdapter.EventViewHolder>(Ev
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.title)
+        holder.bind(current)
     }
 
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val eventItemView: TextView = itemView.findViewById(R.id.textView)
 
-        fun bind(text: String?) {
-            eventItemView.text = text
+        private val binding = RecyclerviewItemBinding.bind(itemView)
+
+        fun bind(event: Event?) {
+            binding.eventTitle.text = "Trip to ${event?.title}"
+            binding.eventDate.text = event?.startDateTime + " - " + event?.endDateTime
+            binding.eventLocation.text = event?.location
         }
 
         companion object {
@@ -41,7 +45,7 @@ class EventListAdapter : ListAdapter<Event, EventListAdapter.EventViewHolder>(Ev
         }
 
         override fun areContentsTheSame(oldItem: Event, newItem: Event): Boolean {
-            return oldItem.title == newItem.title
+            return oldItem._id == newItem._id
         }
     }
 }
