@@ -2,7 +2,7 @@ package com.example.trip
 
 class Utils {
     enum class TravelMood {
-        Happy, Medium, Sad, Excited, Angry, Bored, Tired
+        Happy, Medium, Sad, Excited, Angry
     }
 
     enum class TravelType {

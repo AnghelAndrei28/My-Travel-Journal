@@ -1,80 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <EditText
-        android:id="@+id/edit_title"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/min_height"
-        android:fontFamily="sans-serif-light"
-        android:hint="@string/hint_word"
-        android:inputType="textAutoComplete"
-        android:layout_margin="@dimen/m_padding"
-        android:textSize="18sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edit_title"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/startDateText"
-        android:hint="@string/start_date"
-        android:layout_marginHorizontal="@dimen/m_padding"
-        android:layout_marginTop="@dimen/m_padding"
-        android:textSize="18sp"
-        />
+        <EditText
+            android:id="@+id/edit_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/m_padding"
+            android:background="@drawable/custom_card"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/hint_word"
+            android:inputType="textAutoComplete"
+            android:minHeight="@dimen/min_height"
+            android:textSize="18sp" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/startDate"
-        android:text="@string/pick_start_date"
-        android:layout_marginHorizontal="@dimen/m_padding"
-        android:layout_marginTop="@dimen/s_padding"
-        app:layout_constraintStart_toEndOf="@id/startDateText"
-        />
+        <EditText
+            android:id="@+id/edit_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/m_padding"
+            android:background="@drawable/custom_card"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/hint_word_location"
+            android:inputType="textAutoComplete"
+            android:minHeight="@dimen/min_height"
+            android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edit_title"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/endDateText"
-        android:hint="@string/end_date"
-        android:layout_marginHorizontal="@dimen/m_padding"
-        android:layout_marginTop="@dimen/m_padding"
-        android:textSize="18sp"
-        />
+        <TextView
+            android:id="@+id/startDateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m_padding"
+            android:layout_marginTop="@dimen/m_padding"
+            android:hint="@string/start_date"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_title" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/endDate"
-        android:text="@string/pick_end_date"
-        android:layout_marginHorizontal="@dimen/m_padding"
-        android:layout_marginTop="@dimen/s_padding"
-        app:layout_constraintStart_toEndOf="@id/startDateText"
-        />
+        <Button
+            android:id="@+id/startDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m_padding"
+            android:layout_marginTop="@dimen/s_padding"
+            android:text="@string/pick_start_date"
+            app:layout_constraintStart_toEndOf="@id/startDateText" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/m_padding"
-        android:layout_marginTop="@dimen/b_padding"
-        />
+        <TextView
+            android:id="@+id/endDateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m_padding"
+            android:layout_marginTop="@dimen/m_padding"
+            android:hint="@string/end_date"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_title" />
 
-    <Button
-        android:id="@+id/button_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="@string/button_save"
-        android:layout_margin="@dimen/m_padding"
-        android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/endDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m_padding"
+            android:layout_marginTop="@dimen/s_padding"
+            android:text="@string/pick_end_date"
+            app:layout_constraintStart_toEndOf="@id/startDateText" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m_padding"
+            android:layout_marginTop="@dimen/b_padding"
+            android:text="@string/select_type"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/min_height"
+            android:layout_marginHorizontal="@dimen/m_padding"
+            android:layout_marginTop="@dimen/s_padding"
+            android:background="@drawable/custom_card" />
+
+        <TextView
+            android:id="@+id/txtView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m_padding"
+            android:layout_marginTop="@dimen/b_padding"
+            android:labelFor="@id/mood_slider"
+            android:text="@string/select_mood"
+            android:textSize="18sp" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/mood_slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m_padding"
+            android:layout_marginTop="@dimen/s_padding"
+            android:stepSize="1.0"
+            android:valueFrom="1.0"
+            android:valueTo="5.0" />
+
+        <TextView
+            android:id="@+id/txtView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m_padding"
+            android:layout_marginTop="@dimen/m_padding"
+            android:text="@string/notes"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/edit_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/m_padding"
+            android:background="@drawable/custom_card"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/hint_word_notes"
+            android:inputType="textAutoComplete"
+            android:minHeight="@dimen/min_height"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/m_padding"
+            android:background="@color/colorPrimary"
+            android:text="@string/button_save"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</ScrollView>
