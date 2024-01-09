@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 
 class EventViewModel (private val repository: EventRepository) : ViewModel() {
     val allEvents: LiveData<List<Event>> = repository.allEvents.asLiveData()
+    val favoriteEvents: LiveData<List<Event>> = repository.favoriteEvents.asLiveData()
 
     fun insert(event: Event) {
         viewModelScope.launch {

@@ -20,4 +20,6 @@ interface EventDao {
     @Query("Update event_table SET favorite = :favorite WHERE _id = :id")
     suspend fun updateFavorite(id: Int, favorite: Boolean)
 
+    @Query("SELECT * FROM event_table WHERE favorite = 1 ORDER BY _id DESC")
+    fun getFavoriteEvents(): Flow<List<Event>>
 }
