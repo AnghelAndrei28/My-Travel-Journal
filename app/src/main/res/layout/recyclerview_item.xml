@@ -68,5 +68,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@id/trip_list_item"
         app:layout_constraintBottom_toBottomOf="@id/trip_list_item"
-        android:padding="@dimen/b_padding"/>
+        android:padding="@dimen/b_padding"
+        android:thumb="@drawable/baseline_star_24"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
