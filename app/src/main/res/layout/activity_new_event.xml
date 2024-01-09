@@ -60,6 +60,14 @@
         app:layout_constraintStart_toEndOf="@id/startDateText"
         />
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/m_padding"
+        android:layout_marginTop="@dimen/b_padding"
+        />
+
     <Button
         android:id="@+id/button_save"
         android:layout_width="match_parent"

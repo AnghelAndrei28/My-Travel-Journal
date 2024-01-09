@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
@@ -40,6 +41,9 @@ class NewEventActivity : AppCompatActivity() {
             showDatePicker(endDate)
         }
 
+        val spinner = findViewById<android.widget.Spinner>(R.id.spinner)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, Utils.TravelType.values())
+        spinner.adapter = adapter
 
         val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
