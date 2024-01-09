@@ -3,9 +3,10 @@ package com.example.trip
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "event_table")
-data class Event(
+data class Event (
     @PrimaryKey(autoGenerate = true) val _id: Int = 0,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "startDate")var startDateTime: String,
@@ -16,4 +17,4 @@ data class Event(
     @ColumnInfo(name = "favorite")var favorite: Boolean,
     @ColumnInfo(name = "mood")var mood: Utils.TravelMood,
     @ColumnInfo(name = "type")var type: Utils.TravelType
-)
+) : Serializable

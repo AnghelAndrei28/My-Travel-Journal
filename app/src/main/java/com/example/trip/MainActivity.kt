@@ -67,8 +67,7 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == newEventActivityRequestCode && resultCode == Activity.RESULT_OK) {
             data?.getSerializableExtra(NewEventActivity.EXTRA_REPLY)?.let {
-                val event = Gson().fromJson(it.toString(), Event::class.java)
-                eventViewModel.insert(event)
+                eventViewModel.insert(event = it as Event)
             }
         } else {
             Toast.makeText(

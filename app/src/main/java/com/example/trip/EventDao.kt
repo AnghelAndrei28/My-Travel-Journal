@@ -11,7 +11,7 @@ interface EventDao {
     @Query("SELECT * FROM event_table ORDER BY _id DESC")
     fun getAlphabetizedEvents(): Flow<List<Event>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert
     suspend fun insert(event: Event)
 
     @Query("DELETE FROM event_table")
