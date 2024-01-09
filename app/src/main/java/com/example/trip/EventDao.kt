@@ -16,4 +16,8 @@ interface EventDao {
 
     @Query("DELETE FROM event_table")
     fun deleteAll()
+
+    @Query("Update event_table SET favorite = :favorite WHERE _id = :id")
+    suspend fun updateFavorite(id: Int, favorite: Boolean)
+
 }

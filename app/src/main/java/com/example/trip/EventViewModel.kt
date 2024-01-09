@@ -21,6 +21,12 @@ class EventViewModel (private val repository: EventRepository) : ViewModel() {
             repository.deleteAll()
         }
     }
+
+    fun updateFavorite(id: Int, favorite: Boolean) {
+        viewModelScope.launch {
+            repository.updateFavorite(id, favorite)
+        }
+    }
 }
 
 class EventViewModelFactory(private val repository: EventRepository) : ViewModelProvider.Factory {

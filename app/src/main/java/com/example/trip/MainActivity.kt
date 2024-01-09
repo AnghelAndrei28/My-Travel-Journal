@@ -24,10 +24,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = EventListAdapter()
+        val adapter = EventListAdapter(eventViewModel)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-//        eventViewModel.deleteAll();
         eventViewModel.allEvents.observe(this, Observer { events ->
             events?.let { adapter.submitList(it) }
         })
