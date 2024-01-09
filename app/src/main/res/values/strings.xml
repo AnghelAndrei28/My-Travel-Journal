@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Travel Journal</string>
+    <string name="add_event">Add Event</string>
+    <string name="hint_word">Event...</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Event not saved because it is empty.</string>
+</resources>
