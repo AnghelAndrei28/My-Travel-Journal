@@ -13,4 +13,6 @@
     <string name="notes">Notes</string>
     <string name="select_mood">Select mood:</string>
     <string name="hint_word_location">Add location</string>
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
 </resources>
