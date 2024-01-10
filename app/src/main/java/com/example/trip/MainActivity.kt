@@ -27,7 +27,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = EventListAdapter(eventViewModel) { event -> updateEvent(event) }
+        val adapter = EventListAdapter(
+            listener = { event -> updateEvent(event) },
+            favoriteListener = { event -> eventViewModel.updateFavorite(event._id, !event.favorite)
+            })
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         val eventsCounter = findViewById<TextView>(R.id.events_counter)
@@ -77,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             data?.getSerializableExtra(NewEventActivity.EXTRA_REPLY)?.let {
                 eventViewModel.insert(event = it as Event)
             }
-        } else if(requestCode == updateEventActivityRequestCode && resultCode == Activity.RESULT_OK){
+        } else if (requestCode == updateEventActivityRequestCode && resultCode == Activity.RESULT_OK) {
             data?.getSerializableExtra(NewEventActivity.EXTRA_REPLY)?.let {
                 eventViewModel.updateEvent(event = it as Event)
             }
