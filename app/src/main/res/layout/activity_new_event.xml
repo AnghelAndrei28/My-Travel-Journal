@@ -132,10 +132,21 @@
             android:textSize="18sp" />
 
         <Button
+            android:id="@+id/button_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/s_padding"
+            android:layout_marginHorizontal="@dimen/m_padding"
+            android:background="@color/colorPrimary"
+            android:text="@string/edit"
+            android:textColor="@color/white" />
+
+        <Button
             android:id="@+id/button_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/m_padding"
+            android:layout_marginTop="@dimen/s_padding"
+            android:layout_marginHorizontal="@dimen/m_padding"
             android:background="@color/colorPrimary"
             android:text="@string/button_save"
             android:textColor="@color/white" />

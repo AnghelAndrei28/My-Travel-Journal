@@ -52,30 +52,6 @@ abstract class EventDatabase : RoomDatabase() {
                 endDateTime = "2020-03-05",
                 duration = "4 days",
                 favorite = true,
-                mood = Utils.TravelMood.Happy,
-                type = Utils.TravelType.Family
-            )
-            eventDao.insert(event)
-            event = Event(
-                title = "Berlin",
-                notes = "Berlin",
-                location = "Germany",
-                startDateTime = "2020-03-01",
-                endDateTime = "2020-03-05",
-                duration = "4 days",
-                favorite = true,
-                mood = Utils.TravelMood.Excited,
-                type = Utils.TravelType.Family
-            )
-            eventDao.insert(event)
-            event = Event(
-                title = "Berlin",
-                notes = "Berlin",
-                location = "Germany",
-                startDateTime = "2020-03-01",
-                endDateTime = "2020-03-05",
-                duration = "4 days",
-                favorite = true,
                 mood = Utils.TravelMood.Medium,
                 type = Utils.TravelType.Family
             )

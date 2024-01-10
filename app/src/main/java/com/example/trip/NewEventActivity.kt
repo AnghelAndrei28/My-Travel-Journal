@@ -80,9 +80,35 @@ class NewEventActivity : AppCompatActivity() {
             }
         }
 
+        val buttonEdit = findViewById<Button>(R.id.button_edit)
+        val button = findViewById<Button>(R.id.button_save)
+        buttonEdit.setOnClickListener {
+            title.isEnabled = true
+            location.isEnabled = true
+            startDate.isEnabled = true
+            endDate.isEnabled = true
+            notes.isEnabled = true
+            spinner.isEnabled = true
+            slider.isEnabled = true
+            startDatePicker.isEnabled = true
+            endDatePicker.isEnabled = true
+            button.isEnabled = true
+        }
+
         val intent : Intent = getIntent()
         val event = intent.getSerializableExtra("event") as Event?
         if(event != null){
+            title.isEnabled = false
+            location.isEnabled = false
+            startDate.isEnabled = false
+            endDate.isEnabled = false
+            notes.isEnabled = false
+            spinner.isEnabled = false
+            slider.isEnabled = false
+            startDatePicker.isEnabled = false
+            endDatePicker.isEnabled = false
+            button.isEnabled = false
+
             title.setText(event.title)
             location.setText(event.location)
             startDate.text = event.startDateTime
@@ -92,7 +118,6 @@ class NewEventActivity : AppCompatActivity() {
             slider.value = event.mood.ordinal.toFloat()
         }
 
-        val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
             val replyIntent = Intent()
             if (TextUtils.isEmpty(title.text)) {
