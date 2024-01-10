@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trip.databinding.RecyclerviewItemBinding
 
-class EventListAdapter (private val eventViewModel: EventViewModel)  : ListAdapter<Event, EventListAdapter.EventViewHolder>(EventComparator()) {
+class EventListAdapter (private val eventViewModel: EventViewModel, private val listener: (Event) -> Unit)  : ListAdapter<Event, EventListAdapter.EventViewHolder>(EventComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         return EventViewHolder.create(parent)
@@ -19,6 +19,9 @@ class EventListAdapter (private val eventViewModel: EventViewModel)  : ListAdapt
         val current = getItem(position)
         holder.bind(current)
         holder.setFavoriteListener(current, eventViewModel)
+        holder.itemView.setOnClickListener {
+            listener(current)
+        }
     }
 
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

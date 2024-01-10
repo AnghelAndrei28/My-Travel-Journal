@@ -36,6 +36,7 @@ class NewEventActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_event)
+
         title = findViewById(R.id.edit_title)
         location = findViewById(R.id.edit_location)
         startDate = findViewById(R.id.startDateText)
@@ -77,6 +78,18 @@ class NewEventActivity : AppCompatActivity() {
                 5 -> "Angry"
                 else -> "Happy"
             }
+        }
+
+        val intent : Intent = getIntent()
+        val event = intent.getSerializableExtra("event") as Event?
+        if(event != null){
+            title.setText(event.title)
+            location.setText(event.location)
+            startDate.text = event.startDateTime
+            endDate.text = event.endDateTime
+            notes.setText(event.notes)
+            spinner.setSelection(event.type.ordinal)
+            slider.value = event.mood.ordinal.toFloat()
         }
 
         val button = findViewById<Button>(R.id.button_save)
