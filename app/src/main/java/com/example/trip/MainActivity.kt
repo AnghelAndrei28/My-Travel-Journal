@@ -12,10 +12,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Update
 import com.example.trip.databinding.ActivityMainBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,13 +38,20 @@ class MainActivity : AppCompatActivity() {
 
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+            navView.setCheckedItem(R.id.nav_home)
+
             navView.setNavigationItemSelectedListener {
                 when (it.itemId) {
-                    R.id.profileFragment -> {
-                        Toast.makeText(this@MainActivity, "First Item Clicked", Toast.LENGTH_SHORT).show()
+                    R.id.nav_about -> {
+                        val intent = Intent(this@MainActivity, MainActivity2::class.java)
+                        startActivity(intent)
                     }
-                    R.id.aboutFragment -> {
-                        Toast.makeText(this@MainActivity, "Second Item Clicked", Toast.LENGTH_SHORT).show()
+                    R.id.nav_settings -> {
+                        val intent = Intent(this@MainActivity, SettingsActivity::class.java)
+                        startActivity(intent)
+                    }
+                    R.id.nav_contact -> {
+                        Toast.makeText(this@MainActivity, "Contact unavailable", Toast.LENGTH_SHORT).show()
                     }
                 }
                 true
