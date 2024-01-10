@@ -36,6 +36,7 @@ class NewEventActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_event)
+
         title = findViewById(R.id.edit_title)
         location = findViewById(R.id.edit_location)
         startDate = findViewById(R.id.startDateText)
@@ -79,6 +80,18 @@ class NewEventActivity : AppCompatActivity() {
             }
         }
 
+        val intent : Intent = getIntent()
+        val event = intent.getSerializableExtra("event") as Event?
+        if(event != null){
+            title.setText(event.title)
+            location.setText(event.location)
+            startDate.text = event.startDateTime
+            endDate.text = event.endDateTime
+            notes.setText(event.notes)
+            spinner.setSelection(event.type.ordinal)
+            slider.value = event.mood.ordinal.toFloat()
+        }
+
         val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
             val replyIntent = Intent()
@@ -94,7 +107,20 @@ class NewEventActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
                 val duration = getDuration(startDate.text.toString(), endDate.text.toString())
-                val event = Event(
+                if (event != null) {
+                    event.title = title.text.toString()
+                    event.startDateTime = startDate.text.toString()
+                    event.endDateTime = endDate.text.toString()
+                    event.location = location.text.toString()
+                    event.mood = mood
+                    event.duration = duration
+                    event.type = spinner.selectedItem as Utils.TravelType
+                    event.notes = notes.text.toString()
+                    replyIntent.putExtra(EXTRA_REPLY, event)
+                    setResult(Activity.RESULT_OK, replyIntent)
+                    finish()
+                }
+                val newEvent = Event(
                     title = title.text.toString(),
                     startDateTime = startDate.text.toString(),
                     endDateTime = endDate.text.toString(),
@@ -105,7 +131,7 @@ class NewEventActivity : AppCompatActivity() {
                     favorite = false,
                     notes = notes.text.toString()
                 )
-                replyIntent.putExtra(EXTRA_REPLY, event)
+                replyIntent.putExtra(EXTRA_REPLY, newEvent)
                 setResult(Activity.RESULT_OK, replyIntent)
             }
 

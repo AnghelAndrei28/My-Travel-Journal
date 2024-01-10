@@ -38,4 +38,9 @@ class EventRepository (private val eventDao: EventDao) {
     suspend fun updateFavorite(id: Int, favorite: Boolean) {
         eventDao.updateFavorite(id, favorite)
     }
+
+    @WorkerThread
+    suspend fun updateEvent(event: Event) {
+        eventDao.updateEvent(event)
+    }
 }

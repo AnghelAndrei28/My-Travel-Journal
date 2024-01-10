@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trip.databinding.RecyclerviewItemBinding
 
-class EventListAdapter (private val eventViewModel: EventViewModel)  : ListAdapter<Event, EventListAdapter.EventViewHolder>(EventComparator()) {
+class EventListAdapter (
+    private val listener: (Event) -> Unit,
+    private val favoriteListener: (Event) -> Unit
+) : ListAdapter<Event, EventListAdapter.EventViewHolder>(EventComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         return EventViewHolder.create(parent)
@@ -17,24 +20,23 @@ class EventListAdapter (private val eventViewModel: EventViewModel)  : ListAdapt
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current)
-        holder.setFavoriteListener(current, eventViewModel)
+        holder.bind(current, favoriteListener)
+        holder.itemView.setOnClickListener {
+            listener(current)
+        }
     }
 
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val binding = RecyclerviewItemBinding.bind(itemView)
 
-        fun bind(event: Event?) {
+        fun bind(event: Event?, favoriteListener: (Event) -> Unit) {
             binding.eventTitle.text = "Trip to ${event?.title}"
             binding.eventDate.text = event?.startDateTime + " - " + event?.endDateTime
             binding.eventLocation.text = event?.location
             event?.favorite?.let { binding.eventSwitch.isChecked = it }
-        }
-
-        fun setFavoriteListener(event: Event, eventViewModel: EventViewModel) {
             binding.eventSwitch.setOnCheckedChangeListener { _, isChecked ->
-                eventViewModel.updateFavorite(event._id, isChecked)
+                event?.let { favoriteListener(it) }
             }
         }
 

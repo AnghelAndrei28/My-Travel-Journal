@@ -8,7 +8,7 @@ import java.io.Serializable
 @Entity(tableName = "event_table")
 data class Event (
     @PrimaryKey(autoGenerate = true) val _id: Int = 0,
-    @ColumnInfo(name = "title") val title: String,
+    @ColumnInfo(name = "title") var title: String,
     @ColumnInfo(name = "startDate")var startDateTime: String,
     @ColumnInfo(name = "endDate")var endDateTime: String,
     @ColumnInfo(name = "notes")var notes: String,
