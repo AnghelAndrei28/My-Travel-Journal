@@ -2,9 +2,13 @@ package com.example.trip
 
 import android.app.Activity
 import android.content.Intent
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -14,6 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trip.databinding.ActivityMainBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.json.JSONObject
+import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +32,9 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding : ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
+
+    val CITY: String = "bucharest,ro"
+    val API: String = "7933c2442046308468205094cb11a2d1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +66,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
         }
+        weatherTask().execute()
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = EventListAdapter(
             listener = { event -> updateEvent(event) },
@@ -130,4 +140,40 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    inner class weatherTask() : AsyncTask<String, Void, String>() {
+        override fun doInBackground(vararg params: String?): String? {
+            var response:String?
+            try{
+                response = URL("https://api.openweathermap.org/data/2.5/weather?q=$CITY&units=metric&appid=$API").
+                readText(
+                    Charsets.UTF_8
+                )
+            }catch (e: Exception){
+                response = null
+            }
+            return response
+        }
+
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+            try {
+                /* Extracting JSON returns from the API */
+                val jsonObj = JSONObject(result!!)
+                val main = jsonObj.getJSONObject("main")
+                val weather = jsonObj.getJSONArray("weather").getJSONObject(0)
+
+                val temp = main.getString("temp")+"°C"
+                val weatherDescription = weather.getString("main")
+
+                binding.temperatura.text = temp
+                binding.vreme.text = weatherDescription
+
+            } catch (e: Exception) {
+                Toast.makeText(this@MainActivity, "Error", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+    }
+
 }

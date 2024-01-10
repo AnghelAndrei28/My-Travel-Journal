@@ -29,7 +29,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,9 +38,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/b_padding"
                 android:thumb="@drawable/baseline_star_24"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/events_counter" />
+
+            <TextView
+                android:id="@+id/temperatura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/events_counter"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/temperatura"/>
+
+            <TextView
+                android:id="@+id/vreme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/temperatura"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/vreme"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
