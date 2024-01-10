@@ -1,7 +1,16 @@
 <resources>
     <string name="app_name">My Travel Journal</string>
     <string name="add_event">Add Event</string>
-    <string name="hint_word">Event...</string>
+    <string name="hint_word">Title</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Event not saved because it is empty.</string>
+    <string name="pick_start_date">Pick Start Date</string>
+    <string name="start_date">Start Date</string>
+    <string name="pick_end_date">Pick end date</string>
+    <string name="end_date">End date</string>
+    <string name="select_type">Select type:</string>
+    <string name="hint_word_notes">Add notes</string>
+    <string name="notes">Notes</string>
+    <string name="select_mood">Select mood:</string>
+    <string name="hint_word_location">Add location</string>
 </resources>

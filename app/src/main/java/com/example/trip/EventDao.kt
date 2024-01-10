@@ -8,12 +8,18 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface EventDao {
-    @Query("SELECT * FROM event_table ORDER BY title ASC")
+    @Query("SELECT * FROM event_table ORDER BY _id DESC")
     fun getAlphabetizedEvents(): Flow<List<Event>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert
     suspend fun insert(event: Event)
 
     @Query("DELETE FROM event_table")
-    suspend fun deleteAll()
+    fun deleteAll()
+
+    @Query("Update event_table SET favorite = :favorite WHERE _id = :id")
+    suspend fun updateFavorite(id: Int, favorite: Boolean)
+
+    @Query("SELECT * FROM event_table WHERE favorite = 1 ORDER BY _id DESC")
+    fun getFavoriteEvents(): Flow<List<Event>>
 }
