@@ -9,14 +9,17 @@ import com.example.trip.databinding.ActivitySettingsBinding
 class SettingsActivity : AppCompatActivity() {
 
     lateinit var binding : ActivitySettingsBinding
-//    val sharedPreference = getSharedPreferences("PREFERENCE_NAME",Context.MODE_PRIVATE)
-//    var isDarkTheme = sharedPreference.getBoolean("theme", false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val sharedPreference = getSharedPreferences("PREFERENCE_NAME",Context.MODE_PRIVATE)
+        var isDarkTheme = sharedPreference.getBoolean("theme", false)
+
+        binding.themeSwitch.isChecked = isDarkTheme
 
         binding.themeSwitch.setOnCheckedChangeListener { _, isChecked ->
             AppCompatDelegate.setDefaultNightMode(if (isChecked) AppCompatDelegate.MODE_NIGHT_YES

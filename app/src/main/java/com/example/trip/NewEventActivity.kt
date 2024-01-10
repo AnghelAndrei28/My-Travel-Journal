@@ -6,15 +6,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import com.google.android.material.slider.Slider
-import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -80,9 +77,35 @@ class NewEventActivity : AppCompatActivity() {
             }
         }
 
+        val buttonEdit = findViewById<Button>(R.id.button_edit)
+        val button = findViewById<Button>(R.id.button_save)
+        buttonEdit.setOnClickListener {
+            title.isEnabled = true
+            location.isEnabled = true
+            startDate.isEnabled = true
+            endDate.isEnabled = true
+            notes.isEnabled = true
+            spinner.isEnabled = true
+            slider.isEnabled = true
+            startDatePicker.isEnabled = true
+            endDatePicker.isEnabled = true
+            button.isEnabled = true
+        }
+
         val intent : Intent = getIntent()
         val event = intent.getSerializableExtra("event") as Event?
         if(event != null){
+            title.isEnabled = false
+            location.isEnabled = false
+            startDate.isEnabled = false
+            endDate.isEnabled = false
+            notes.isEnabled = false
+            spinner.isEnabled = false
+            slider.isEnabled = false
+            startDatePicker.isEnabled = false
+            endDatePicker.isEnabled = false
+            button.isEnabled = false
+
             title.setText(event.title)
             location.setText(event.location)
             startDate.text = event.startDateTime
@@ -92,7 +115,6 @@ class NewEventActivity : AppCompatActivity() {
             slider.value = event.mood.ordinal.toFloat()
         }
 
-        val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
             val replyIntent = Intent()
             if (TextUtils.isEmpty(title.text)) {
