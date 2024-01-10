@@ -107,7 +107,20 @@ class NewEventActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
                 val duration = getDuration(startDate.text.toString(), endDate.text.toString())
-                val event = Event(
+                if (event != null) {
+                    event.title = title.text.toString()
+                    event.startDateTime = startDate.text.toString()
+                    event.endDateTime = endDate.text.toString()
+                    event.location = location.text.toString()
+                    event.mood = mood
+                    event.duration = duration
+                    event.type = spinner.selectedItem as Utils.TravelType
+                    event.notes = notes.text.toString()
+                    replyIntent.putExtra(EXTRA_REPLY, event)
+                    setResult(Activity.RESULT_OK, replyIntent)
+                    finish()
+                }
+                val newEvent = Event(
                     title = title.text.toString(),
                     startDateTime = startDate.text.toString(),
                     endDateTime = endDate.text.toString(),
@@ -118,7 +131,7 @@ class NewEventActivity : AppCompatActivity() {
                     favorite = false,
                     notes = notes.text.toString()
                 )
-                replyIntent.putExtra(EXTRA_REPLY, event)
+                replyIntent.putExtra(EXTRA_REPLY, newEvent)
                 setResult(Activity.RESULT_OK, replyIntent)
             }
 
